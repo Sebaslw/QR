@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Generador de Códigos QR</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStrccmmalpPtI4sX78k6OXyFkA3-mw6mXJ_A&s" />
+</head>
+<body>
+
+    <h1>Generador de Códigos QR</h1>
+
+    <div class="container">
+        <div class="tab-container">
+            <button class="tab active" onclick="openTab('standard', this)">QR Estándar</button>
+            <button class="tab" onclick="openTab('wifi', this)">QR WiFi</button>
+        </div>
+
+        <div class="content-container">
+
+            <!-- QR estándar -->
+            <section id="standard" class="content active">
+                <h2>Generador de Código QR</h2>
+                <p>Ingrese texto o URL para crear un código QR</p>
+
+                <form class="form" onsubmit="event.preventDefault(); generateStandardQR();">
+                    <input type="text" id="qr-input" placeholder="Ingrese la dirección URL o texto" />
+                    <button type="submit">Generar QR</button>
+                </form>
+
+                <div class="wrapper">
+                    <div class="qr-code">
+                        <img src="" id="qr-img" alt="QR generado">
+                    </div>
+                    <button id="descarga">Descargar</button>
+                </div>
+            </section>
+
+            <!-- QR WiFi -->
+            <section id="wifi" class="content">
+                <h2>Generador de Código QR para Wi-Fi</h2>
+
+                <form class="wifi-form" onsubmit="event.preventDefault(); generateWifiQR();">
+                    <input type="text" id="ssid" placeholder="Nombre de la red (SSID)" required />
+                    <input type="password" id="password" placeholder="Contraseña de la red" required />
+
+                    <div id="wifi-qrcode"></div>
+
+                    <div class="error-message" id="error-message">
+                        Por favor, ingresa el nombre de la red y la contraseña.
+                    </div>
+
+                    <div class="wifi-buttons">
+                        <button type="submit">Generar QR</button>
+                        <button type="button" id="wifi-download-btn">Descargar QR</button>
+                    </div>
+                </form>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Librería QR -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
